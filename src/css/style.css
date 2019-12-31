@@ -1,0 +1,124 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:700);
+
+html,
+body {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+    margin: 0;
+    /* overflow: hidden; */
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}
+
+#updater {
+	display: none;
+}
+
+
+#logo {
+	width: 100%;
+	text-align: center;
+	padding-top: 2em;
+/*
+	padding-left: 2em;
+	margin-left: auto; 
+	margin-right: auto;
+*/
+}
+
+#canvas {
+	margin: auto;
+}
+
+#function {
+	width: 100%;
+	text-align: center;
+
+}
+
+/* button style */
+.btn {
+    color: #28aadc;
+    background-color: #fff;
+    border: 2px solid #28aadc;
+    border-radius: 0;
+    padding-top: 10px;
+    font-weight: 700;
+    width: 240px;
+    height: 30px;
+    display: inline-block;
+}
+
+.btn:hover {
+	background-color: #28aadc;
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.onoffswitch {
+    position: relative; width: 244px;
+    display: inline-block;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #FFFFF; border-radius: 0px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 44px; padding: 0; line-height: 44px;
+    font-size: 16px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "Typo ON";
+    /* padding-left: 21px;*/
+    background-color: #28AADC; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "Typo OFF";
+    /* padding-right: 21px; */
+    background-color: #EEEEEE; color: #999999;
+    /* text-align: right; */
+}
+.onoffswitch-switch {
+    display: block; width: 27px; margin: 8.5px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 196px;
+    border: 2px solid #FFFFF; border-radius: 0px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
