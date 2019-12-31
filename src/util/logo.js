@@ -1,50 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>IAD</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <!-- IE 9: display inline SVG -->
-    <meta http-equiv="X-UA-Compatible" content="IE=9">
-
-    <script src="./lib/jszip/dist/jszip.min.js"></script>
-    <script src="./lib/FileSaverjs/FileSaver.min.js"></script>
-    <script type="text/javascript" src="./lib/seedrandom.min.js"></script>
-    <script type="text/javascript" src="./lib/jquery-2.2.0.min.js"></script>
-    <script type="text/javascript" src="./lib/paperjs-v0.12.4/dist/paper-full.js"></script>
-    <script type="text/javascript" src="./iad.js"></script>
-
-</head>
-<body>
-
-
-	<div id="logo">
-		<canvas id="canvas" width="300" height="300"></canvas>
-	</div>
-
-	<div id="function">
-
-		<div>
-			<div class="onoffswitch">
-			    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="typoon" checked>
-			    <label class="onoffswitch-label" for="typoon">
-			        <span class="onoffswitch-inner"></span>
-			        <span class="onoffswitch-switch"></span>
-			    </label>
-			</div>
-		</div><br>
-
-		<div><a href="#" id="new" class="btn">New Logo</a></div><br>
-		<div><a href="#" id="run" class="btn">Save Logo (SVG)</a></div><br>
-		<div><a href="#" id="runZip" class="btn">Save 500× Logo (ZIP)</a></div><br>
-	</div>
-
-
-    <div id="updater">
-        <div id="svg" ></div>
-
-		<svg id="typo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1005 285">
+export const logoSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1005 285">
 		  <title>typo</title>
 		  <rect x="540" y="30" width="30" height="30"/>
 		  <rect x="780" y="60" width="30" height="30"/>
@@ -72,9 +26,4 @@
 		  <path d="M375,90v51.3a21,21,0,0,0,6.15,14.85l1.35,1.35,13.71-13.71A30,30,0,0,0,405,122.57V90H375Z"/>
 		  <path d="M623.85,83.85L622.5,82.5,608.79,96.21A30,30,0,0,0,600,117.43V180h30V98.7A21,21,0,0,0,623.85,83.85Z"/>
 		  <rect x="690" y="90" width="30" height="90"/>
-		</svg>
-
-    </div>
-
-</body>
-</html>
+		</svg>`;

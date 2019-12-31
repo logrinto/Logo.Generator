@@ -1,0 +1,27 @@
+/* button style */
+.Button {
+  color: #28aadc;
+  background-color: #fff;
+  border: 2px solid #28aadc;
+  border-radius: 0;
+  font-weight: 700;
+  width: 100%;
+  margin-bottom: 0.2rem;
+  height: 3rem;
+  text-align: center;
+  padding-top: 0rem;
+  /* padding-bottom: 0.7rem; */
+  line-height: 1;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.Button:hover {
+  background-color: #28aadc;
+  color: #fff;
+}
+
+.Button:focus {
+  outline: 0;
+}
