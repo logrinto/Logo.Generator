@@ -22,3 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /__LOGO
+ci/.ssh/id_rsa
+ci/.ssh/secret.key
