@@ -234,37 +234,37 @@ export const aidRaster = {
       path.moveTo(scalePoints.p1);
       path.lineTo(scalePoints.p2);
 
-      var circle = new Paper.Path.Circle({
+      new Paper.Path.Circle({
         center: scalePoints.p1c,
         radius: 3,
         fillColor: "green"
       });
 
-      var circle = new Paper.Path.Circle({
+      new Paper.Path.Circle({
         center: scalePoints.p2c,
         radius: 3,
         fillColor: "red"
       });
 
-      var circle = new Paper.Path.Circle({
+      new Paper.Path.Circle({
         center: scalePoints.p1r,
         radius: 3,
         fillColor: "red"
       });
 
-      var circle = new Paper.Path.Circle({
+      new Paper.Path.Circle({
         center: scalePoints.p1l,
         radius: 3,
         fillColor: "red"
       });
 
-      var circle = new Paper.Path.Circle({
+      new Paper.Path.Circle({
         center: scalePoints.p2r,
         radius: 3,
         fillColor: "green"
       });
 
-      var circle = new Paper.Path.Circle({
+      new Paper.Path.Circle({
         center: scalePoints.p2l,
         radius: 3,
         fillColor: "green"
@@ -412,7 +412,10 @@ export const aidRaster = {
 
     var currentPos = p.bounds.topLeft;
 
-    p.position = new Paper.Point(0 - currentPos.x + posX, 0 - currentPos.y + posY);
+    p.position = new Paper.Point(
+      0 - currentPos.x + posX,
+      0 - currentPos.y + posY
+    );
   },
 
   getScale: function() {
@@ -428,17 +431,6 @@ export const aidRaster = {
 
   calcStick: function(name) {
     var prefs = this[name];
-
-    var stick = {
-      p1: {
-        x: 0,
-        y: 0
-      },
-      p2: {
-        x: 0,
-        y: 0
-      }
-    };
 
     var width = this.randomBetween(prefs.minX, prefs.maxX);
     var height = this.randomBetween(prefs.minY, prefs.maxY);
@@ -466,7 +458,7 @@ export const aidRaster = {
         var currentX = this.getGridPoint(x);
         var currentY = this.getGridPoint(y);
 
-        var circle = new Paper.Path.Circle({
+        new Paper.Path.Circle({
           center: [currentX * this.getScale(), currentY * this.getScale()],
           radius: (this.xDotWidth / 2) * this.getScale(),
           fillColor: "#555"
