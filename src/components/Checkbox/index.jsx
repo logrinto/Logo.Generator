@@ -9,7 +9,7 @@ const Checkbox = ({ checked, onChange }) => (
       name="Checkbox"
       className="Checkbox__checkbox"
       checked={checked}
-      onChange={e => onChange(e.target.checked)}
+      onChange={(e) => onChange(e.target.checked)}
     />
     <label className="Checkbox__label" htmlFor="typoon">
       <span className="Checkbox__inner"></span>

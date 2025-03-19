@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Paper from "paper";
+import { debug } from "../../settings";
 import "./styles.css";
 
 import { aidRaster } from "../../util/raster";
@@ -42,12 +43,14 @@ export default class Sketch extends Component {
     // full size bg
     var rectangle = new Paper.Rectangle(
       new Paper.Point(0, 0),
-      new Paper.Point(aidRaster.width, aidRaster.width)
+      new Paper.Point(aidRaster.width, aidRaster.width),
     );
     var path = new Paper.Path.Rectangle(rectangle);
     path.fillColor = "#ffffff";
 
-    // aidRaster.drawGrid();
+    if (debug) {
+      aidRaster.drawGrid();
+    }
 
     var greenStick = aidRaster.calcStick("green");
     var purpleStick = aidRaster.calcStick(getRandom(["purpleA", "purpleB"]));

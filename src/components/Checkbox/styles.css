@@ -36,7 +36,7 @@
 .Checkbox__inner:before {
   content: "Typo ON";
   /* padding-left: 21px;*/
-  background-color: #28aadc;
+  background-color: #899f95;
   color: #ffffff;
 }
 .Checkbox__inner:after {

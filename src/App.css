@@ -4,3 +4,11 @@
   margin: 0 auto;
   padding-top: 1rem;
 }
+:root {
+  background-color: #f5f5f5;
+}
+
+#function {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

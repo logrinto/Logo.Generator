@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css";
 
 const Button = ({ title, onClick }) => (
-  <button className="Button" onClick={e => onClick(e)}>
+  <button className="Button" onClick={(e) => onClick(e)}>
     {title}
   </button>
 );

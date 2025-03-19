@@ -1,8 +1,8 @@
 /* button style */
 .Button {
-  color: #28aadc;
+  color: #899f95;
   background-color: #fff;
-  border: 2px solid #28aadc;
+  border: 2px solid #899f95;
   border-radius: 0;
   font-weight: 700;
   width: 100%;
@@ -18,7 +18,7 @@
 }
 
 .Button:hover {
-  background-color: #28aadc;
+  background-color: #899f95;
   color: #fff;
 }
 
