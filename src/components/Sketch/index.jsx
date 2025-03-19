@@ -1,39 +1,47 @@
-import React, { Component } from "react";
+import React, { useEffect, useCallback } from "react";
 import Paper from "paper";
 import { debug } from "../../settings";
 import "./styles.css";
 
 import { aidRaster } from "../../util/raster";
+// 1993 Park-Miller linear congruential generator (LCG)
+// https://en.wikipedia.org/wiki/Lehmer_random_number_generator
+// Source: https://gist.github.com/blixt/f17b47c62508be59987b
 
-function getRandom(list) {
-  return list[Math.floor(Math.random() * list.length)];
+// usage:
+// let rand = LCG(42);
+// rand() → 0.000944073311984539
+// rand() → 0.5713628428056836
+// rand() → 0.2557850731536746
+
+const LCG = (s) => {
+  return () => {
+    s = Math.imul(48271, s) | 0 % 2147483647;
+    return (s & 2147483647) / 2147483648;
+  };
+};
+
+function getRandom(list, randomFn = Math.random) {
+  return list[Math.floor(randomFn() * list.length)];
 }
 
-export default class Sketch extends Component {
-  componentDidMount() {
-    // Instantiate the paperScope with the canvas element
-    var myCanvas = document.getElementById("myCanvas");
-    Paper.setup(myCanvas);
-    this.renderLogo();
-  }
+const Sketch = ({ hasType, onEndRender, seed }) => {
+  const renderLogo = useCallback(() => {
+    // Initialize random generator with seed
+    const random = LCG(seed);
 
-  componentDidUpdate(prevProps) {
-    this.renderLogo();
-  }
+    console.log("run logo start", seed);
 
-  renderLogo() {
-    if (this.props.hasType) {
+    if (hasType) {
       aidRaster.x = 7;
       aidRaster.y = 7;
       aidRaster.xLogoOffset = 3;
       aidRaster.yLogoOffset = -3;
-      this.checked = true;
     } else {
       aidRaster.x = 4;
       aidRaster.y = 4;
       aidRaster.xLogoOffset = 0;
       aidRaster.yLogoOffset = 0;
-      this.checked = false;
     }
 
     Paper.project.activeLayer.removeChildren();
@@ -53,8 +61,10 @@ export default class Sketch extends Component {
     }
 
     var greenStick = aidRaster.calcStick("green");
-    var purpleStick = aidRaster.calcStick(getRandom(["purpleA", "purpleB"]));
-    var blueStick = aidRaster.calcStick(getRandom(["blueA", "blueB"]));
+    var purpleStick = aidRaster.calcStick(
+      getRandom(["purpleA", "purpleB"], random),
+    );
+    var blueStick = aidRaster.calcStick(getRandom(["blueA", "blueB"], random));
 
     // draw lines
     aidRaster.drawStickLine(greenStick, aidRaster.greenColor);
@@ -70,16 +80,28 @@ export default class Sketch extends Component {
       aidRaster.drawTypo();
     }
 
-    if (this.props.onEndRender) {
-      this.props.onEndRender(Paper.project.exportSVG().outerHTML);
+    if (onEndRender) {
+      onEndRender(Paper.project.exportSVG().outerHTML);
     }
 
     Paper.view.update();
 
     console.log("run logo end");
-  }
+  }, [hasType, seed, onEndRender]);
 
-  render() {
-    return <canvas id="myCanvas" resize="true" width="600" height="600" />;
-  }
-}
+  // Setup Paper.js once the component mounts
+  useEffect(() => {
+    var myCanvas = document.getElementById("myCanvas");
+    Paper.setup(myCanvas);
+    renderLogo();
+  }, []);
+
+  // Re-render when props change
+  useEffect(() => {
+    renderLogo();
+  }, [renderLogo]);
+
+  return <canvas id="myCanvas" resize="true" width="600" height="600" />;
+};
+
+export default Sketch;
