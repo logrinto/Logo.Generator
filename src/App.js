@@ -16,15 +16,36 @@ function saveSVG(svg, seed) {
   saveAs(blob, `logo-seed-${seed}.svg`);
 }
 
+const getInitialSeed = () => {
+  const params = new URLSearchParams(window.location.search);
+  const urlSeed = params.get('seed');
+  if (urlSeed && !isNaN(urlSeed) && urlSeed >= 1 && urlSeed <= 999) {
+    return parseInt(urlSeed);
+  }
+  return Math.floor(Math.random() * 999) + 1;
+};
+
+const updateUrlSeed = (seed) => {
+  const url = new URL(window.location);
+  url.searchParams.set('seed', seed);
+  window.history.pushState({}, '', url);
+};
+
 function App() {
   const [hasType, setHasType] = useState(true);
-  const [seed, setSeed] = useState(1); // not implemented yet
+  const [seed, setSeed] = useState(getInitialSeed());
+
+  const handleNewSeed = () => {
+    const newSeed = Math.floor(Math.random() * 999) + 1;
+    setSeed(newSeed);
+    updateUrlSeed(newSeed);
+  };
 
   return (
     <div className="App">
       <div id="function">
         <Checkbox checked={hasType} onChange={setHasType} />
-        <Button title="New Logo" onClick={(e) => setSeed(seed + 1)} />
+        <Button title="New Logo" onClick={handleNewSeed} />
         <Button
           title="Save Logo (SVG)"
           onClick={(e) => saveSVG(lastSVG, seed)}
