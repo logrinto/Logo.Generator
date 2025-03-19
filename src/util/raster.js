@@ -193,7 +193,7 @@ export const aidRaster = {
     };
   },
 
-  drawStickOutLine: function (prefs, color) {
+  drawStickOutLine: function (prefs, color, randomFn = Math.random) {
     // scale
 
     var pos = this.calcStickPosition(prefs);
@@ -210,7 +210,7 @@ export const aidRaster = {
       p2l: outline.p2l.multiply(this.getScale()),
     };
 
-    var drawPaths = this.getRandom(this.outlineDraw);
+    var drawPaths = this.getRandom(this.outlineDraw, randomFn);
 
     for (var i = 0; i < drawPaths.length; i++) {
       var drawPoints = drawPaths[i];
@@ -326,12 +326,12 @@ export const aidRaster = {
     return [smallerX, smallerY];
   },
 
-  getRandom: function (list) {
-    return list[Math.floor(Math.random() * list.length)];
+  getRandom: function (list, randomFn = Math.random) {
+    return list[Math.floor(randomFn() * list.length)];
   },
 
-  randomBetween: function (min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+  randomBetween: function (min, max, randomFn = Math.random) {
+    return Math.floor(randomFn() * (max - min + 1) + min);
   },
 
   calcStickPosition: function (prefs) {
@@ -436,16 +436,16 @@ export const aidRaster = {
     );
   },
 
-  calcStick: function (name) {
+  calcStick: function (name, randomFn = Math.random) {
     var prefs = this[name];
 
-    var width = this.randomBetween(prefs.minX, prefs.maxX);
-    var height = this.randomBetween(prefs.minY, prefs.maxY);
+    var width = this.randomBetween(prefs.minX, prefs.maxX, randomFn);
+    var height = this.randomBetween(prefs.minY, prefs.maxY, randomFn);
 
-    var xOffset = this.randomBetween(this.xLogoOffset, this.x - width - 1);
-    var yOffset = this.randomBetween(0, this.y - height - 1 + this.yLogoOffset);
+    var xOffset = this.randomBetween(this.xLogoOffset, this.x - width - 1, randomFn);
+    var yOffset = this.randomBetween(0, this.y - height - 1 + this.yLogoOffset, randomFn);
 
-    var clockwise = Math.random() >= 0.5;
+    var clockwise = randomFn() >= 0.5;
 
     return {
       x: xOffset,

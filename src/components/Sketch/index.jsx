@@ -60,11 +60,12 @@ const Sketch = ({ hasType, onEndRender, seed }) => {
       aidRaster.drawGrid();
     }
 
-    var greenStick = aidRaster.calcStick("green");
+    var greenStick = aidRaster.calcStick("green", random);
     var purpleStick = aidRaster.calcStick(
       getRandom(["purpleA", "purpleB"], random),
+      random
     );
-    var blueStick = aidRaster.calcStick(getRandom(["blueA", "blueB"], random));
+    var blueStick = aidRaster.calcStick(getRandom(["blueA", "blueB"], random), random);
 
     // draw lines
     aidRaster.drawStickLine(greenStick, aidRaster.greenColor);
@@ -72,9 +73,9 @@ const Sketch = ({ hasType, onEndRender, seed }) => {
     aidRaster.drawStickLine(blueStick, aidRaster.blueColor);
 
     // draw outline
-    aidRaster.drawStickOutLine(greenStick, aidRaster.greenColor);
-    aidRaster.drawStickOutLine(purpleStick, aidRaster.purpleColor);
-    aidRaster.drawStickOutLine(blueStick, aidRaster.blueColor);
+    aidRaster.drawStickOutLine(greenStick, aidRaster.greenColor, random);
+    aidRaster.drawStickOutLine(purpleStick, aidRaster.purpleColor, random);
+    aidRaster.drawStickOutLine(blueStick, aidRaster.blueColor, random);
 
     if (aidRaster.xLogoOffset !== 0) {
       aidRaster.drawTypo();
