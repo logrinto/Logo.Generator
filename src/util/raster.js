@@ -423,9 +423,9 @@ export const aidRaster = {
     var scale = this.width / totalWidth;
 
     // Incorporate pixel density if available
-    if (typeof window !== "undefined" && window.devicePixelRatio) {
-      scale = scale / window.devicePixelRatio;
-    }
+    // if (typeof window !== "undefined" && window.devicePixelRatio) {
+    //   scale = scale / window.devicePixelRatio;
+    // }
 
     return scale;
   },
