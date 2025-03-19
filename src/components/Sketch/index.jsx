@@ -63,9 +63,12 @@ const Sketch = ({ hasType, onEndRender, seed }) => {
     var greenStick = aidRaster.calcStick("green", random);
     var purpleStick = aidRaster.calcStick(
       getRandom(["purpleA", "purpleB"], random),
-      random
+      random,
     );
-    var blueStick = aidRaster.calcStick(getRandom(["blueA", "blueB"], random), random);
+    var blueStick = aidRaster.calcStick(
+      getRandom(["blueA", "blueB"], random),
+      random,
+    );
 
     // draw lines
     aidRaster.drawStickLine(greenStick, aidRaster.greenColor);
@@ -95,7 +98,7 @@ const Sketch = ({ hasType, onEndRender, seed }) => {
     var myCanvas = document.getElementById("myCanvas");
     Paper.setup(myCanvas);
     renderLogo();
-  }, []);
+  }, [renderLogo]);
 
   // Re-render when props change
   useEffect(() => {
