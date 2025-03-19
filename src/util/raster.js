@@ -41,7 +41,7 @@ export const aidRaster = {
     maxX: 2,
     minY: 3,
     maxY: 3,
-    diagonal: true
+    diagonal: true,
   },
 
   //
@@ -50,14 +50,14 @@ export const aidRaster = {
     maxX: 0,
     minY: 2,
     maxY: 2,
-    diagonal: false
+    diagonal: false,
   },
   blueB: {
     minX: 1,
     maxX: 1,
     minY: 1,
     maxY: 1,
-    diagonal: true
+    diagonal: true,
   },
 
   purpleA: {
@@ -65,39 +65,39 @@ export const aidRaster = {
     maxX: 2,
     minY: 2,
     maxY: 2,
-    diagonal: true
+    diagonal: true,
   },
   purpleB: {
     minX: 3,
     maxX: 3,
     minY: 0,
     maxY: 0,
-    diagonal: false
+    diagonal: false,
   },
 
   outlineDraw: [
     // L-shape A
     [
       ["p1", "p1l", "p2l"],
-      ["p2", "p2r", "p1r"]
+      ["p2", "p2r", "p1r"],
     ],
 
     // L-shape B
     [
       ["p1", "p1r", "p2r"],
-      ["p2", "p2l", "p1l"]
+      ["p2", "p2l", "p1l"],
     ],
 
     // D-shape A
     [
       ["p1", "p1l", "p2l", "p2"],
-      ["p2r", "p1r"]
+      ["p2r", "p1r"],
     ],
 
     // D-shape B
     [
       ["p1", "p1r", "p2r", "p2"],
-      ["p2l", "p1l"]
+      ["p2l", "p1l"],
     ],
 
     // O-shape A
@@ -110,7 +110,7 @@ export const aidRaster = {
     [["p2", "p2r", "p1r", "p1", "p1l", "p2l"]],
 
     // O-shape C
-    [["p2r", "p1r", "p1", "p1l", "p2l", "p2"]]
+    [["p2r", "p1r", "p1", "p1l", "p2l", "p2"]],
   ],
 
   /*
@@ -148,12 +148,12 @@ export const aidRaster = {
 
   pathExtendedWidth: 140,
 
-  calcStickOutLine: function(p1, p2) {
+  calcStickOutLine: function (p1, p2) {
     var p1c = new Paper.Point(
-      this.shortenLine(p1.x, p1.y, p2.x, p2.y, this.pathExtendedWidth / 2)
+      this.shortenLine(p1.x, p1.y, p2.x, p2.y, this.pathExtendedWidth / 2),
     );
     var p2c = new Paper.Point(
-      this.shortenLine(p2.x, p2.y, p1.x, p1.y, this.pathExtendedWidth / 2)
+      this.shortenLine(p2.x, p2.y, p1.x, p1.y, this.pathExtendedWidth / 2),
     );
 
     var topPoints = this.expandLine(
@@ -161,7 +161,7 @@ export const aidRaster = {
       p1c.y,
       p2c.x,
       p2c.y,
-      this.pathExtendedWidth / 2
+      this.pathExtendedWidth / 2,
     );
     var p1r = new Paper.Point(topPoints[1]);
     var p1l = new Paper.Point(topPoints[0]);
@@ -171,7 +171,7 @@ export const aidRaster = {
       p2c.y,
       p1c.x,
       p1c.y,
-      this.pathExtendedWidth / 2
+      this.pathExtendedWidth / 2,
     );
     var p2r = new Paper.Point(bottomPoints[0]);
     var p2l = new Paper.Point(bottomPoints[1]);
@@ -189,11 +189,11 @@ export const aidRaster = {
       p1r: p1r,
       p1l: p1l,
       p2r: p2r,
-      p2l: p2l
+      p2l: p2l,
     };
   },
 
-  drawStickOutLine: function(prefs, color) {
+  drawStickOutLine: function (prefs, color) {
     // scale
 
     var pos = this.calcStickPosition(prefs);
@@ -207,7 +207,7 @@ export const aidRaster = {
       p1r: outline.p1r.multiply(this.getScale()),
       p1l: outline.p1l.multiply(this.getScale()),
       p2r: outline.p2r.multiply(this.getScale()),
-      p2l: outline.p2l.multiply(this.getScale())
+      p2l: outline.p2l.multiply(this.getScale()),
     };
 
     var drawPaths = this.getRandom(this.outlineDraw);
@@ -237,63 +237,63 @@ export const aidRaster = {
       new Paper.Path.Circle({
         center: scalePoints.p1c,
         radius: 3,
-        fillColor: "green"
+        fillColor: "green",
       });
 
       new Paper.Path.Circle({
         center: scalePoints.p2c,
         radius: 3,
-        fillColor: "red"
+        fillColor: "red",
       });
 
       new Paper.Path.Circle({
         center: scalePoints.p1r,
         radius: 3,
-        fillColor: "red"
+        fillColor: "red",
       });
 
       new Paper.Path.Circle({
         center: scalePoints.p1l,
         radius: 3,
-        fillColor: "red"
+        fillColor: "red",
       });
 
       new Paper.Path.Circle({
         center: scalePoints.p2r,
         radius: 3,
-        fillColor: "green"
+        fillColor: "green",
       });
 
       new Paper.Path.Circle({
         center: scalePoints.p2l,
         radius: 3,
-        fillColor: "green"
+        fillColor: "green",
       });
     }
   },
 
   // http://stackoverflow.com/questions/17989148/javascript-find-point-on-perpendicular-line-always-the-same-distance-away
   // http://jsfiddle.net/92jWG/6/
-  expandLine: function(x1, y1, x2, y2, dist) {
+  expandLine: function (x1, y1, x2, y2, dist) {
     var angle = Math.atan2(y2 - y1, x2 - x1);
 
     // Draw a normal to the line above
     return [
       {
         x: Math.sin(angle) * dist + x1,
-        y: -Math.cos(angle) * dist + y1
+        y: -Math.cos(angle) * dist + y1,
       },
 
       {
         x: -Math.sin(angle) * dist + x1,
-        y: Math.cos(angle) * dist + y1
-      }
+        y: Math.cos(angle) * dist + y1,
+      },
     ];
   },
 
   // http://stackoverflow.com/questions/24376951/find-new-coordinates-of-point-on-line
   // http://jsfiddle.net/3SY8v/
-  shortenLine: function(x1, y1, x2, y2, smallerLen) {
+  shortenLine: function (x1, y1, x2, y2, smallerLen) {
     /*
         //if line is vertical
         if(fromX === toX)
@@ -326,45 +326,45 @@ export const aidRaster = {
     return [smallerX, smallerY];
   },
 
-  getRandom: function(list) {
+  getRandom: function (list) {
     return list[Math.floor(Math.random() * list.length)];
   },
 
-  randomBetween: function(min, max) {
+  randomBetween: function (min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   },
 
-  calcStickPosition: function(prefs) {
+  calcStickPosition: function (prefs) {
     var start = null;
     var end = null;
 
     if (prefs.clockwise) {
       start = new Paper.Point(
         this.getGridPoint(prefs.x),
-        this.getGridPoint(prefs.y)
+        this.getGridPoint(prefs.y),
       );
       end = new Paper.Point(
         this.getGridPoint(prefs.x + prefs.width),
-        this.getGridPoint(prefs.y + prefs.height)
+        this.getGridPoint(prefs.y + prefs.height),
       );
     } else {
       start = new Paper.Point(
         this.getGridPoint(prefs.x + prefs.width),
-        this.getGridPoint(prefs.y)
+        this.getGridPoint(prefs.y),
       );
       end = new Paper.Point(
         this.getGridPoint(prefs.x),
-        this.getGridPoint(prefs.y + prefs.height)
+        this.getGridPoint(prefs.y + prefs.height),
       );
     }
 
     return {
       start: start,
-      end: end
+      end: end,
     };
   },
 
-  drawStickLine: function(prefs, color) {
+  drawStickLine: function (prefs, color) {
     // Create a Paper.js Path to draw a line into it:
     var path = new Paper.Path();
     // Give the stroke a color
@@ -385,12 +385,12 @@ export const aidRaster = {
     path.lineTo(endScale);
   },
 
-  SVGSymbol: function() {
+  SVGSymbol: function () {
     var a = new Paper.Symbol(Paper.project.importSVG(logoSVG));
     return a;
   },
 
-  drawTypo: function() {
+  drawTypo: function () {
     var logo = this.SVGSymbol();
     var p = logo.place();
 
@@ -414,22 +414,29 @@ export const aidRaster = {
 
     p.position = new Paper.Point(
       0 - currentPos.x + posX,
-      0 - currentPos.y + posY
+      0 - currentPos.y + posY,
     );
   },
 
-  getScale: function() {
+  getScale: function () {
     var totalWidth = this.xDotWidth * this.x + this.xSpaceWidth * (this.x + 1);
-    return (this.width / totalWidth) * 1;
+    var scale = this.width / totalWidth;
+
+    // Incorporate pixel density if available
+    if (typeof window !== "undefined" && window.devicePixelRatio) {
+      scale = scale / window.devicePixelRatio;
+    }
+
+    return scale;
   },
 
-  getGridPoint: function(value) {
+  getGridPoint: function (value) {
     return (
       (value + 1) * (this.xSpaceWidth + this.xDotWidth) - this.xDotWidth / 2
     );
   },
 
-  calcStick: function(name) {
+  calcStick: function (name) {
     var prefs = this[name];
 
     var width = this.randomBetween(prefs.minX, prefs.maxX);
@@ -445,11 +452,11 @@ export const aidRaster = {
       y: yOffset,
       width: width,
       height: height,
-      clockwise: clockwise
+      clockwise: clockwise,
     };
   },
 
-  drawGrid: function() {
+  drawGrid: function () {
     // Do something with name, you can access regExForName variable
     // using "this.regExForName"
 
@@ -461,9 +468,9 @@ export const aidRaster = {
         new Paper.Path.Circle({
           center: [currentX * this.getScale(), currentY * this.getScale()],
           radius: (this.xDotWidth / 2) * this.getScale(),
-          fillColor: "#555"
+          fillColor: "#555",
         });
       }
     }
-  }
+  },
 };
